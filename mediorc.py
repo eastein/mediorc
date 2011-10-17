@@ -56,6 +56,9 @@ class IRC(irclib.SimpleIRCClient) :
 		self.dead = True
 
 	def on_join(self, c, e) :
+		self.initialize_pinger()
+
+	def initialize_pinger(self) :
 		if self._ping_s is None or self._ping_r is None :
 			self._ping_s = time.time()
 			self._ping_r = time.time()
