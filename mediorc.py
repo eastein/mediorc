@@ -94,6 +94,8 @@ class IRCThread(threading.Thread) :
 			while self.ok and not self.client.dead and not self.client.pinged_out :
 				self.client.maybe_send_ping()
 				self.client.ircobj.process_once(0.2)
+				if hasattr(self.client, 'do_work') :
+					self.client.do_work()
 
 			if self.ok :
 				print 'shutting down irc connection before reconnect'
