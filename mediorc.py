@@ -45,7 +45,7 @@ class IRC(irclib.SimpleIRCClient) :
 		if not self.disconnecting :
 			self.disconnecting = True
 			try :
-				self.disconnect("lidless exiting")
+				self.disconnect("Quit")
 			except :
 				pass
 		print 'irc shut down cleanly'
