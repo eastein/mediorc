@@ -1,6 +1,6 @@
 # About
 
-This is a mediorcre IRC bot library.
+This is a mediocre IRC bot library.
 
 # Dependencies
 
