@@ -1,8 +1,11 @@
 import time
 import threading
-import irclib
+try :
+	import irc.client as irc
+except ImportError :
+	import irclib as irc
 
-class IRC(irclib.SimpleIRCClient) :
+class IRC(irc.SimpleIRCClient) :
 	JOIN_TIMEOUT = 120
 	PING_TIMEOUT = 120
 	PING_FREQUENCY = 60
@@ -13,7 +16,7 @@ class IRC(irclib.SimpleIRCClient) :
 		self._ping_r = None
 		self._create_t = time.time()
 
-		irclib.SimpleIRCClient.__init__(self)
+		irc.SimpleIRCClient.__init__(self)
 		self._server = server
 		self._nick = nick
 		self._chan = chan
@@ -89,7 +92,7 @@ class IRCThread(threading.Thread) :
 			self.client = self.bot_create()
 			try :
 				self.client.conn()
-			except irclib.ServerConnectionError :
+			except irc.ServerConnectionError :
 				print 'could not connect to irc server for some reason, retrying in %d' % IRCThread.RETRY_SEC
 				self.checkedwait(IRCThread.RETRY_SEC)
 
