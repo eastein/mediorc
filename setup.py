@@ -9,5 +9,5 @@ setup(name='mediorc',
       author_email='toba@des.truct.org',
       url='https://github.com/eastein/mediorc/',
       packages=['mediorc', 'mediorc_dns'],
-      install_requires=['dnspython', 'irc==10.1']
+      install_requires=['dnspython', 'irc==10.1', 'jaraco.util==10.9']
      )
