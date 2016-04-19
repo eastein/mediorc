@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='mediorc',
-      version='0.1.2',
+      version='0.1.3',
       description='Mediorc IRC Bot Helpers Library',
       author='Eric Stein',
       author_email='toba@des.truct.org',
