@@ -1,5 +1,8 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import time
 import threading
+from six.moves import range
 try :
 	import irc.client as irc
 except ImportError :
@@ -51,11 +54,11 @@ class IRC(irc.SimpleIRCClient) :
 				self.disconnect("Quit")
 			except :
 				pass
-		print 'irc shut down cleanly'
+		print('irc shut down cleanly')
 		self.dead = True
 	
 	def on_disconnect(self, c, e) :
-		print 'got disconnect'
+		print('got disconnect')
 		self.dead = True
 
 	def on_join(self, c, e) :
@@ -88,12 +91,12 @@ class IRCThread(threading.Thread) :
 
 	def run(self) :
 		while self.ok :
-			print 'creating new irc connection'
+			print('creating new irc connection')
 			self.client = self.bot_create()
 			try :
 				self.client.conn()
 			except irc.ServerConnectionError :
-				print 'could not connect to irc server for some reason, retrying in %d' % IRCThread.RETRY_SEC
+				print('could not connect to irc server for some reason, retrying in %d' % IRCThread.RETRY_SEC)
 				self.checkedwait(IRCThread.RETRY_SEC)
 
 			while self.ok and not self.client.dead and not self.client.pinged_out :
@@ -103,5 +106,5 @@ class IRCThread(threading.Thread) :
 					self.client.do_work()
 
 			if self.ok :
-				print 'shutting down irc connection before reconnect'
+				print('shutting down irc connection before reconnect')
 				self.client.clean_shutdown()
